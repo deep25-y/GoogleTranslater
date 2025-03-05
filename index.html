@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Translator</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Google Translator</h1>
+    <form method="post" action="/translate">
+        <label for="text">Text to translate:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50">{{ text | default('') }}</textarea><br><br>
+        <label for="target_language">Target language (e.g., 'es' for Spanish):</label><br>
+        <input type="text" id="target_language" name="target_language" value="{{ target_language | default('') }}"><br><br>
+        <input type="submit" value="Translate">
+    </form>
+
+    {% if translated_text %}
+        <h2>Translated Text:</h2>
+        <p>{{ translated_text }}</p>
+    {% endif %}
+
+    {% if error %}
+        <h2>Error:</h2>
+        <p>{{ error }}</p>
+    {% endif %}
+</body>
+</html>
